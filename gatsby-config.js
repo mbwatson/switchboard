@@ -1,14 +1,14 @@
 module.exports = {
   siteMetadata: {
-    title: `Generic Site`,
+    title: `RENCI Switchboard`,
     description: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus animi harum accusantium!`,
     author: `mw`,
     menuItems: [
       { text: 'Home', path: '/', },
-      { text: 'About', path: '/about', },
+      { text: 'SOPs', path: '/sops', },
       { text: 'FAQs', path: '/faqs', },
       { }, // this indicates a divider should be rendered in the menu
-      { text: 'Contact', path: '/contact', },
+      { text: 'Documents', path: '/docs', },
     ],
   },
   plugins: [
@@ -47,5 +47,5 @@ module.exports = {
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
   ],
-  pathPrefix: "/gatsby-basic",
+  pathPrefix: "/switchboard",
 }

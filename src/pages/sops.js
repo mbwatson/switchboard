@@ -2,7 +2,7 @@ import React, { Fragment } from "react"
 
 export default () => (
     <Fragment>
-        <h2>Contact</h2>
+        <h2>SOPs</h2>
         <p>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis laborum consequatur ex aliquid recusandae.
         </p>
