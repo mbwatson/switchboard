@@ -10,12 +10,12 @@
 import React from "react"
 
 import { AuthProvider } from "./src/contexts"
-import { Switchboard } from './src/layouts'
+import { Dashboard } from './src/layouts'
 
 export const wrapPageElement = ({ element }) => (
     <AuthProvider>
-        <Switchboard>
+        <Dashboard>
             { element }
-        </Switchboard>
+        </Dashboard>
     </AuthProvider>
 )

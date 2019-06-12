@@ -49,7 +49,7 @@ const LoginLogoutButton = styled(Button)`
     padding: 0 1rem;
 `
 
-export const Switchboard = ({ children }) => {
+export const Dashboard = ({ children }) => {
     const [windowWidth, setWindowWidth] = useWindowWidth()
     const isCompact = () => windowWidth < 800
     const [menuOpen, setMenuOpen] = useState(false)
@@ -149,6 +149,6 @@ export const Switchboard = ({ children }) => {
     )
 }
 
-Switchboard.propTypes = {
+Dashboard.propTypes = {
     children: PropTypes.node.isRequired,
 }

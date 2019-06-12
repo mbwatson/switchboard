@@ -1,1 +1,1 @@
-export * from './Switchboard'
+export * from './Dashboard'
