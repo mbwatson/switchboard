@@ -1,1 +1,1 @@
-{"data":{"site":{"siteMetadata":{"title":"RENCI Switchboard","menuItems":[{"text":"Home","path":"/"},{"text":"SOPs","path":"/sops"},{"text":"FAQs","path":"/faqs"},{"text":null,"path":null},{"text":"Documents","path":"/docs"}]}}}}
+{"data":{"site":{"siteMetadata":{"title":"RENCI Switchboard","menuItems":[{"text":"Welcome","path":"/"},{"text":"Communications","path":"/comms"},{"text":"Project Management","path":"/pm"},{"text":"Event Planning","path":"/pm/event-planning"},{"text":null,"path":null},{"text":"Documents","path":"/docs"},{"text":"FAQs","path":"/faqs"}]}}}}
