@@ -9,21 +9,29 @@ import { Divider } from '../components/Divider'
 import { Brand } from '../components/Brand'
 import { SearchBox } from '../components/SearchBox'
 import { Rotator } from '../components/Transformers'
-import { ExpandIcon, LockIcon, ExitIcon, SearchIcon } from '../components/Icons'
+import { DashboardIcon, ExitIcon, ExpandIcon, LockIcon, SearchIcon } from '../components/Icons'
 import { useWindowWidth } from '../hooks/useWindowWidth'
 import { useAuth } from '../contexts'
 import '../styles/base.scss'
 import '../styles/globals.scss'
 
 const WINDOW_WIDTH_THRESHOLD = 1080
-const MENU_WIDTH = 250
+const MENU_WIDTH = 320
 
-const MenuToggleButton = styled(Button)`
+const HeaderButton = styled(Button)`
+    background-color: transparent;
+    padding: 0 0.5rem;
+    & svg {
+        transition: fill 250ms;
+        fill: var(--color-primary);
+        fill: ${ props => props.active ? 'var(--color-white)' : 'var(--color-primary)' };
+    }
+`
+
+const MenuToggleButton = styled(HeaderButton)`
     padding: 0 1rem;
     opacity: 1.0;
-    pointer-events: default;
     transform: translateX(0%)
-    background-color: transparent;
     ${ props => props.visible ? `
         opacity: 1.0;
         pointer-events: default;
@@ -34,19 +42,6 @@ const MenuToggleButton = styled(Button)`
         transform: translateX(-100%)
     `
     }
-`
-
-const SearchButton = styled(Button)`
-    background-color: transparent;
-    & svg {
-        transition: fill 250ms;
-        fill: var(--color-primary);
-        fill: ${ props => props.active ? 'var(--color-white)' : 'var(--color-primary)' };
-    }
-`
-
-const LoginLogoutButton = styled(Button)`
-    padding: 0 1rem;
 `
 
 export const Dashboard = ({ children }) => {
@@ -104,16 +99,17 @@ export const Dashboard = ({ children }) => {
                             { compact ? null : 'Menu' } <Rotator rotated={ menuOpen }><ExpandIcon /></Rotator>
                         </MenuToggleButton>
                         <Brand compact={ compact } style={{ flex: 1 }}><Link to="/">{ data.site.siteMetadata.title }</Link></Brand>
-                        <SearchButton onClick={ handleToggleSearchBox } active={ searchBoxVisibile }><SearchIcon /></SearchButton>
+                        <HeaderButton as="a" href="http://dashboard.renci.org/" target="_blank" rel="noopener noreferrer"><DashboardIcon /></HeaderButton>
+                        <HeaderButton onClick={ handleToggleSearchBox } active={ searchBoxVisibile }><SearchIcon /></HeaderButton>
                         {
                             isLoggedIn() ? (
-                                <LoginLogoutButton onClick={ logoutHandler }>
+                                <HeaderButton onClick={ logoutHandler }>
                                     <ExitIcon /> &nbsp; { compact ? null : 'LOGOUT' }
-                                </LoginLogoutButton>
+                                </HeaderButton>
                             ) : (
-                                <LoginLogoutButton onClick={ loginHandler }>
+                                <HeaderButton onClick={ loginHandler }>
                                     <LockIcon /> &nbsp; { compact ? null : 'LOGIN' }
-                                </LoginLogoutButton>
+                                </HeaderButton>
                             )
                         }
                     </Header>

@@ -4,11 +4,13 @@ module.exports = {
     description: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus animi harum accusantium!`,
     author: `mw`,
     menuItems: [
-      { text: 'Home', path: '/', },
-      { text: 'SOPs', path: '/sops', },
-      { text: 'FAQs', path: '/faqs', },
+      { text: 'Welcome', path: '/', submenu: null},
+      { text: 'Communications', path: '/comms', },
+      { text: 'Project Management', path: '/pm', },
+      { text: 'Event Planning', path: '/pm/event-planning', },
       { }, // this indicates a divider should be rendered in the menu
       { text: 'Documents', path: '/docs', },
+      { text: 'FAQs', path: '/faqs', },
     ],
   },
   plugins: [

@@ -1,3 +1,4 @@
+export * from './DashboardIcon'
 export * from './ExitIcon'
 export * from './ExpandIcon'
 export * from './LockIcon'
