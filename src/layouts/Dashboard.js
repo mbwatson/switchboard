@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Link, StaticQuery, graphql } from 'gatsby'
 import { Layout, Header, Footer, Main, Content } from '../components/Layout'
-import { Button } from '../components/Button'
 import { Menu, MenuItem } from '../components/Menu'
 import { Divider } from '../components/Divider'
 import { Brand } from '../components/Brand'
@@ -18,13 +17,25 @@ import '../styles/globals.scss'
 const WINDOW_WIDTH_THRESHOLD = 1080
 const MENU_WIDTH = 320
 
-const HeaderButton = styled(Button)`
-    background-color: transparent;
-    padding: 0 0.5rem;
+export const HeaderButton = styled.button`
+    color: var(--color-primary);
     & svg {
         transition: fill 250ms;
         fill: var(--color-primary);
         fill: ${ props => props.active ? 'var(--color-white)' : 'var(--color-primary)' };
+    }
+    outline: none;
+    border: 0;
+    text-transform: uppercase;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+    transition: all 250ms;
+    background-color: transparent;
+    &:hover {
+        filter: brightness(0.75);
     }
 `
 
