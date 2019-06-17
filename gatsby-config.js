@@ -5,9 +5,14 @@ module.exports = {
     author: `mw`,
     menuItems: [
       { text: 'Welcome', path: '/', submenu: null},
+      { text: 'ACIS', path: '/acis', },
+      { text: 'Admin Team', path: '/admin', },
+      { text: 'Finance', path: '/finance', },
+      { text: 'Human Resources', path: '/hr', },
       { text: 'Communications', path: '/comms', },
       { text: 'Project Management', path: '/pm', },
       { text: 'Event Planning', path: '/pm/event-planning', },
+      { text: 'Miscellaneous', path: '/misc', },
       { }, // this indicates a divider should be rendered in the menu
       { text: 'Documents', path: '/docs', },
       { text: 'FAQs', path: '/faqs', },
