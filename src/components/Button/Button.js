@@ -20,6 +20,11 @@ export const Button = styled.button`
         background-color: var(--color-primary);
         color: #fff;
     }
+    &:focus {
+        background-color: var(--color-primary);
+        color: #fff;
+        box-shadow: 0 0 6px 1px rgba(var(--color-primary-shadow));
+    }
 `
 
 Button.propTypes = {
