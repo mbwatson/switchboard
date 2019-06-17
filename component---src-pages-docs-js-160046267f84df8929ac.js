@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[3],{201:function(e,t,a){"use strict";a.r(t);var i=a(0),n=a.n(i);t.default=function(){return n.a.createElement(i.Fragment,null,n.a.createElement("h2",null,"Documents"),n.a.createElement("p",null,"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus enim soluta magnam earum asperiores totam a perspiciatis officia distinctio sit labore repellat accusamus doloremque iste obcaecati voluptatibus, adipisci aut unde!"))}}}]);
+//# sourceMappingURL=component---src-pages-docs-js-160046267f84df8929ac.js.map
