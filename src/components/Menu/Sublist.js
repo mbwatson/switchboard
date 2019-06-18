@@ -34,7 +34,7 @@ Sublist.propTypes = {
 }
 
 export const ExpandingSublist = ({ title, to, activeClassName, children }) => {
-    const [open, setOpen] = useState(true)
+    const [open, setOpen] = useState(false)
 
     const handleExpand = event => {
         event.preventDefault()
