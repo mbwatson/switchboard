@@ -3,12 +3,12 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Link, StaticQuery, graphql } from 'gatsby'
 import { Layout, Header, Footer, Main, Content } from '../components/Layout'
-import { Menu, MenuItem } from '../components/Menu'
+import { Menu, MenuItem, ExpandingSublist } from '../components/Menu'
 import { Divider } from '../components/Divider'
 import { Brand } from '../components/Brand'
 import { SearchBox } from '../components/SearchBox'
 import { Rotator } from '../components/Transformers'
-import { DashboardIcon, ExitIcon, ExpandIcon, LockIcon, SearchIcon } from '../components/Icons'
+import { DashboardIcon, ExitIcon, ExpandRightIcon, LockIcon, SearchIcon } from '../components/Icons'
 import { useWindowWidth } from '../hooks/useWindowWidth'
 import { useAuth } from '../contexts'
 import '../styles/base.scss'
@@ -55,6 +55,24 @@ const MenuToggleButton = styled(HeaderButton)`
     }
 `
 
+const Navigation = ({ items, compact, width }) => (
+    <Menu compact={ compact } width={ width }>
+        {
+            items.map(({ text, path, submenu }) =>
+                text && path ?
+                    submenu ? (
+                        <ExpandingSublist title={ text } key={ text } to={ path } activeClassName="active">
+                            { submenu.map(({ text, path }) => <MenuItem key={ path } to={ path } activeClassName="active">{ text }</MenuItem>) }
+                        </ExpandingSublist>
+                    ) : (
+                        <MenuItem key={ path } to={ path } activeClassName="active">{ text }</MenuItem>
+                    )
+                : <Divider key={ Math.random() } />
+                )
+        }
+    </Menu>
+)
+
 export const Dashboard = ({ children }) => {
     const [windowWidth, setWindowWidth] = useWindowWidth()
     const isCompact = () => windowWidth < 800
@@ -97,6 +115,10 @@ export const Dashboard = ({ children }) => {
                             menuItems {
                                 text
                                 path
+                                submenu {
+                                    text
+                                    path
+                                }
                             }
                         }
                     }
@@ -107,7 +129,7 @@ export const Dashboard = ({ children }) => {
                 <Layout style={{ overflow: 'hidden' }}>
                     <Header compact={ compact }>
                         <MenuToggleButton visible={ windowWidth < WINDOW_WIDTH_THRESHOLD } onClick={ handleToggleMenu }>
-                            { compact ? null : 'Menu' } <Rotator rotated={ menuOpen }><ExpandIcon /></Rotator>
+                            { compact ? null : 'Menu' } <Rotator rotated={ menuOpen }><ExpandRightIcon /></Rotator>
                         </MenuToggleButton>
                         <Brand compact={ compact } style={{ flex: 1 }}><Link to="/">{ data.site.siteMetadata.title }</Link></Brand>
                         <HeaderButton as="a" href="http://dashboard.renci.org/" target="_blank" rel="noopener noreferrer"><DashboardIcon /></HeaderButton>
@@ -126,17 +148,7 @@ export const Dashboard = ({ children }) => {
                     </Header>
                     <SearchBox open={ searchBoxVisibile } searchHandler={ handleSearch } />
                     <Main style={{ transform: menuOpen || windowWidth >= WINDOW_WIDTH_THRESHOLD ? `translateX(${ MENU_WIDTH }px)` : 'translateX(0)' }}>
-                        <Menu compact={ compact } width={ MENU_WIDTH }>
-                            {
-                                data.site.siteMetadata.menuItems.map(({ text, path }) => {
-                                    if (text && path) {
-                                        return <MenuItem key={ text } to={ path } activeClassName="active">{ text }</MenuItem>
-                                    } else {
-                                        return <Divider key={ 'asd' } />
-                                    }
-                                })
-                            }
-                        </Menu>
+                        <Navigation items={ data.site.siteMetadata.menuItems } compact={ compact } width={ MENU_WIDTH } />
                         <Content
                             compact={ compact }
                             pushedAside={ menuOpen }

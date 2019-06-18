@@ -1,5 +1,5 @@
 export * from './DashboardIcon'
 export * from './ExitIcon'
-export * from './ExpandIcon'
+export * from './ExpandIcons'
 export * from './LockIcon'
 export * from './SearchIcon'

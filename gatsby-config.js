@@ -4,14 +4,18 @@ module.exports = {
     description: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus animi harum accusantium!`,
     author: `mw`,
     menuItems: [
-      { text: 'Welcome', path: '/', submenu: null},
+      { text: 'Welcome', path: '/', },
+      { }, // this indicates a divider should be rendered in the menu
       { text: 'ACIS', path: '/acis', },
       { text: 'Admin Team', path: '/admin', },
       { text: 'Finance', path: '/finance', },
       { text: 'Human Resources', path: '/hr', },
       { text: 'Communications', path: '/comms', },
-      { text: 'Project Management', path: '/pm', },
-      { text: 'Event Planning', path: '/pm/event-planning', },
+      { text: 'Project Management', path: '/pm',
+        submenu: [
+          { text: 'Event Planning', path: '/pm/event-planning', },
+        ],
+      },
       { text: 'Miscellaneous', path: '/misc', },
       { }, // this indicates a divider should be rendered in the menu
       { text: 'Documents', path: '/docs', },
