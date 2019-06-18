@@ -29,23 +29,23 @@ export const TextareaInput = styled.textarea`
 `
 
 export const ContactForm = props => {
-    const [feedback, setFeedback] = useState('')
-    const [feedbackSent, setFeedbackSent] = useState(false)
+    const [message, setMessage] = useState('')
+    const [messageSent, setMessageSent] = useState(false)
     
-    const handleChangeFeedback = event => {
-        setFeedback(event.target.value)
-        console.log(feedback)
+    const handleChangeMessage = event => {
+        setMessage(event.target.value)
+        console.log(message)
     }
 
-    const handleSubmitFeedback = event => {
-        console.log('Submitting feedback:', feedback)
-        setFeedbackSent(true)
+    const handleSubmitMessage = event => {
+        console.log('Submitting message:', message)
+        setMessageSent(true)
     }
 
-    return !feedbackSent ? (
+    return !messageSent ? (
         <FormControl>
-            <TextareaInput placeholder="Enter feedback" value={ feedback } onChange={ handleChangeFeedback } />
-            <Button onClick={ handleSubmitFeedback }>Submit</Button>
+            <TextareaInput placeholder="Enter message" value={ message } onChange={ handleChangeMessage } />
+            <Button onClick={ handleSubmitMessage }>Submit</Button>
         </FormControl>
     ) : (
         <Paragraph style={{ textAlign: 'center', border: '1px solid #ccc', padding: '1rem' }}>
