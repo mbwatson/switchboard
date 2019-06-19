@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Menu = styled.div`
+export const Menu = styled.nav`
     display: flex;
     flex-direction: column;
     border-right: 1px solid var(--color-grey);
