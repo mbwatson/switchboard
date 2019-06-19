@@ -12,4 +12,5 @@ export const Menu = styled.nav`
     top: 0;
     left: -${ props => props.width }px;
     height: 100%;
+    overflow-y: auto;
 `
