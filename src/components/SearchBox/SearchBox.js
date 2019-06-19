@@ -45,7 +45,7 @@ export const SearchButtonContainer = styled(Button)`
     background-color: transparent;
 `
 
-export const SearchBox = ({ open, searchHandler }) => {
+export const SearchBox = ({ open, closeSearchHandler, searchHandler }) => {
     const [query, setQuery] = useState('')
     const inputElement = useRef()
 
@@ -55,9 +55,8 @@ export const SearchBox = ({ open, searchHandler }) => {
 
     const handleChangeQuery = event => setQuery(event.target.value)
     const handleKeyDown = event => {
-        if (event.key === 'Enter') {
-            searchHandler()
-        }
+        if (event.key === 'Enter') searchHandler()
+        if (event.key === 'Escape') closeSearchHandler()
     }
 
     return (

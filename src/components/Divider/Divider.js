@@ -4,5 +4,5 @@ export const Divider = styled.div`
     width: 100%;
     height: 1px;
     background-color: var(--color-grey);
-    margin: 1rem 0;
+    margin: 1.5rem 0;
 `

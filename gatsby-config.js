@@ -4,11 +4,32 @@ module.exports = {
     description: `Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus animi harum accusantium!`,
     author: `mw`,
     menuItems: [
-      { text: 'Home', path: '/', },
-      { text: 'SOPs', path: '/sops', },
-      { text: 'FAQs', path: '/faqs', },
+      { text: 'Welcome', path: '/', },
+      { }, // this indicates a divider should be rendered in the menu
+      { text: 'ACIS', path: '/acis', },
+      { text: 'Admin Team', path: '/admin',
+        submenu: [
+          { text: 'RENCI FAQs', path: '/admin/faqs', },
+          { text: 'Employee Onboarding', path: '/admin/onboarding', },
+          { text: 'Employee Offboarding', path: '/admin/offboarding', },
+          { text: 'Maintenance Request', path: '/admin/maintenance-request', },
+          { text: 'Resources Request', path: '/admin/resources-request', },
+          { text: 'Records Keeping', path: '/admin/records-keeping', },
+        ],
+      },
+      { text: 'Finance', path: '/finance', },
+      { text: 'Human Resources', path: '/hr', },
+      { text: 'Communications', path: '/comms', },
+      { text: 'Project Management', path: '/pm',
+        submenu: [
+          { text: 'Event Planning', path: '/pm/event-planning', },
+          { text: 'Support Request', path: '/pm/support-request', },
+        ],
+      },
+      { text: 'Miscellaneous', path: '/misc', },
       { }, // this indicates a divider should be rendered in the menu
       { text: 'Documents', path: '/docs', },
+      { text: 'FAQs', path: '/faqs', },
     ],
   },
   plugins: [
