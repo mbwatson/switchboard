@@ -11,7 +11,7 @@ import { SearchBox } from '../components/SearchBox'
 import { Rotator } from '../components/Transformers'
 import { DashboardIcon, ExitIcon, ExpandRightIcon, LockIcon, SearchIcon } from '../components/Icons'
 import { useWindowWidth, useScrollPosition } from '../hooks'
-import { useAuth } from '../contexts'
+import { useAuth, RequiresAuth } from '../contexts'
 import '../styles/base.scss'
 import '../styles/globals.scss'
 
@@ -84,8 +84,6 @@ export const Dashboard = ({ children }) => {
     const [compact, setCompact] = useState(isCompact())
     const { loginHandler, logoutHandler, isLoggedIn } = useAuth()
 
-    console.log(scrollPosition)
-
     const handleToggleSearchBox = event => {
         setSearchBoxVisibile(!searchBoxVisibile)
     }
@@ -133,48 +131,74 @@ export const Dashboard = ({ children }) => {
             `}
         render={
             data => (
-                <Layout style={{ overflow: 'hidden' }}>
-                    <Helmet>
-                        <meta charSet="utf-8" />
-                        <title>RENCI Switchboard</title>
-                        <meta name="theme-color" content="#333333" />
-                    </Helmet>
-                    <Header compact={ compact }>
-                        <MenuToggleButton visible={ windowWidth < WINDOW_WIDTH_THRESHOLD } onClick={ handleToggleMenu }>
-                            { compact ? null : 'Menu' } <Rotator rotated={ menuOpen }><ExpandRightIcon /></Rotator>
-                        </MenuToggleButton>
-                        <Brand compact={ compact } style={{ flex: 1 }}><Link to="/">{ data.site.siteMetadata.title }</Link></Brand>
-                        <HeaderButton as="a" href="http://dashboard.renci.org/" target="_blank" rel="noopener noreferrer"><DashboardIcon /></HeaderButton>
-                        <HeaderButton onClick={ handleToggleSearchBox } active={ searchBoxVisibile }><SearchIcon /></HeaderButton>
-                        {
-                            isLoggedIn() ? (
-                                <HeaderButton onClick={ logoutHandler }>
-                                    <ExitIcon /> &nbsp; { compact ? null : 'LOGOUT' }
-                                </HeaderButton>
-                            ) : (
-                                <HeaderButton onClick={ loginHandler }>
-                                    <LockIcon /> &nbsp; { compact ? null : 'LOGIN' }
-                                </HeaderButton>
-                            )
-                        }
-                    </Header>
-                    <SearchBox open={ searchBoxVisibile } searchHandler={ handleSearch } closeSearchHandler={ closeSearchBox } />
-                    <Main style={{ transform: menuOpen || windowWidth >= WINDOW_WIDTH_THRESHOLD ? `translateX(${ MENU_WIDTH }px)` : 'translateX(0)' }}>
-                        <Navigation items={ data.site.siteMetadata.menuItems } compact={ compact } width={ MENU_WIDTH } />
-                        <Content
-                            compact={ compact }
-                            pushedAside={ menuOpen }
-                            dimmed={ menuOpen || searchBoxVisibile }
-                            maxWidth={ WINDOW_WIDTH_THRESHOLD - MENU_WIDTH }
-                            onClick={ handleCloseDrawers }
-                        >
-                            { children }
-                        </Content>
-                    </Main>
-                    <Footer>
-                        &copy; { new Date().getFullYear() }
-                    </Footer>
-                </Layout>
+                isLoggedIn() ? (
+                    <Layout style={{ overflow: 'hidden' }}>
+                        <Helmet>
+                            <meta charSet="utf-8" />
+                            <title>RENCI Switchboard</title>
+                            <meta name="theme-color" content="#333333" />
+                        </Helmet>
+                        <Header compact={ compact }>
+                            <MenuToggleButton visible={ windowWidth < WINDOW_WIDTH_THRESHOLD } onClick={ handleToggleMenu }>
+                                { compact ? null : 'Menu' } <Rotator rotated={ menuOpen }><ExpandRightIcon /></Rotator>
+                            </MenuToggleButton>
+                            <Brand compact={ compact } style={{ flex: 1 }}><Link to="/">{ data.site.siteMetadata.title }</Link></Brand>
+                            <HeaderButton as="a" href="http://dashboard.renci.org/" target="_blank" rel="noopener noreferrer"><DashboardIcon /></HeaderButton>
+                            <HeaderButton onClick={ handleToggleSearchBox } active={ searchBoxVisibile }><SearchIcon /></HeaderButton>
+                            {
+                                isLoggedIn() ? (
+                                    <HeaderButton onClick={ logoutHandler }>
+                                        <ExitIcon /> &nbsp; { compact ? null : 'LOGOUT' }
+                                    </HeaderButton>
+                                ) : (
+                                    <HeaderButton onClick={ loginHandler }>
+                                        <LockIcon /> &nbsp; { compact ? null : 'LOGIN' }
+                                    </HeaderButton>
+                                )
+                            }
+                        </Header>
+                        <SearchBox open={ searchBoxVisibile } searchHandler={ handleSearch } closeSearchHandler={ closeSearchBox } />
+                        <Main style={{ transform: menuOpen || windowWidth >= WINDOW_WIDTH_THRESHOLD ? `translateX(${ MENU_WIDTH }px)` : 'translateX(0)' }}>
+                            <Navigation items={ data.site.siteMetadata.menuItems } compact={ compact } width={ MENU_WIDTH } />
+                            <Content
+                                compact={ compact }
+                                pushedAside={ menuOpen }
+                                dimmed={ menuOpen || searchBoxVisibile }
+                                maxWidth={ WINDOW_WIDTH_THRESHOLD - MENU_WIDTH }
+                                onClick={ handleCloseDrawers }
+                            >
+                                { children }
+                            </Content>
+                        </Main>
+                        <Footer>
+                            &copy; { new Date().getFullYear() }
+                        </Footer>
+                    </Layout>
+                ) : (
+                    <Layout style={{ overflow: 'hidden' }}>
+                        <Helmet>
+                            <meta charSet="utf-8" />
+                            <title>RENCI Switchboard</title>
+                            <meta name="theme-color" content="#333333" />
+                        </Helmet>
+                        <Header compact={ compact }>
+                            <Brand compact={ compact } style={{ flex: 1 }}><Link to="/">{ data.site.siteMetadata.title }</Link></Brand>
+                            <HeaderButton onClick={ loginHandler }>
+                                <LockIcon /> &nbsp; { compact ? null : 'LOGIN' }
+                            </HeaderButton>
+                        </Header>
+                        <Main style={{ transform: 'translateX(0)' }}>
+                            <Content compact={ compact }>
+                                <div style={{ height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', }}>
+                                    <h4 style={{ color: 'var(--color-primary)', letterSpacing: '2px' }}>Please log in to view the contents of this page.</h4>
+                                </div>
+                            </Content>
+                        </Main>
+                        <Footer>
+                            &copy; { new Date().getFullYear() }
+                        </Footer>
+                    </Layout>
+                )
             )}
         />
     )
