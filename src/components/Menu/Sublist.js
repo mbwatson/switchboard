@@ -14,24 +14,35 @@ const Expander = styled.div`
     display: flex;
     flex-direction: column;
     padding-left: 0.75rem;
+    & > a {
+        padding-top: 0.25rem;
+        padding-bottom: 0.25rem;
+    }
 `
 
 Expander.propTypes = {
     children: PropTypes.node.isRequired,
 }
 
-export const Sublist = styled.nav`
+export const Sublist = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     width: 100%;
-    // & * { border: 1px solid #f99; }
 `
 
 Sublist.propTypes = {
     children: PropTypes.node.isRequired,
 }
+
+const SubmenuToggler = styled(Rotator)`
+    opacity: 0.75;
+    transition: opacity 250ms;
+    &:hover {
+        opacity: 1.0;
+    }
+`
 
 export const ExpandingSublist = ({ title, to, activeClassName, children }) => {
     const [open, setOpen] = useState(false)
@@ -45,9 +56,9 @@ export const ExpandingSublist = ({ title, to, activeClassName, children }) => {
         <Sublist>
             <MenuItem to={ to } activeClassName={ activeClassName } style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
                 { title }
-                <Rotator rotated={ open } onClick={ handleExpand }>
+                <SubmenuToggler rotated={ open } onClick={ handleExpand }>
                     <ExpandDownIcon />
-                </Rotator>
+                </SubmenuToggler>
             </MenuItem>
             <Expander expanded={ open }>
                 { children }
