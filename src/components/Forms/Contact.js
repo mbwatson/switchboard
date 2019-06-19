@@ -92,8 +92,8 @@ export const ContactForm = props => {
 
     return !messageSent ? (
         <FormControl>
-            <Select name="message-type-select" id="message-type-select" onChange={ handleChangeType }>
-                { messageTypes.map(({ text }) => text).map((text, i) => <Option value={ i } selected={ i === type }>{ text }</Option>) }
+            <Select name="message-type-select" id="message-type-select" onChange={ handleChangeType } value={ type }>
+                { messageTypes.map(({ text }) => text).map((text, i) => <Option key={ i } value={ i }>{ text }</Option>) }
             </Select>
             <TextareaInput placeholder={ messageTypes[type].placeholder } value={ message } onChange={ handleChangeMessage } />
             <Button onClick={ handleSubmitMessage }>Submit</Button>
