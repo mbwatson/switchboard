@@ -51,7 +51,7 @@ export const Option = styled.option`
 
 export const ContactForm = props => {
     const [message, setMessage] = useState('')
-    const [type, setType] = useState(3)
+    const [type, setType] = useState(0)
     const [messageSent, setMessageSent] = useState(false)
     
     const messageTypes = [
