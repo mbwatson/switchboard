@@ -10,8 +10,8 @@ module.exports = {
       { text: 'Admin Team', path: '/admin',
         submenu: [
           { text: 'RENCI FAQs', path: '/admin/faqs', },
-          { text: 'New Employee Onboarding', path: '/admin/onboarding', },
-          { text: 'Offboarding Request', path: '/admin/offboarding', },
+          { text: 'Employee Onboarding', path: '/admin/onboarding', },
+          { text: 'Employee Offboarding', path: '/admin/offboarding', },
           { text: 'Maintenance Request', path: '/admin/maintenance-request', },
           { text: 'Resources Request', path: '/admin/resources-request', },
           { text: 'Records Keeping', path: '/admin/records-keeping', },
