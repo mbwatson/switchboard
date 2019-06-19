@@ -70,7 +70,11 @@ export const ContactForm = props => {
         {
             text: 'Praise',
             placeholder: 'Wow, this is such a great resource!',
-        }
+        },
+        {
+            text: 'Other',
+            placeholder: 'So, here\'s a random question...',
+        },
     ]
 
     const handleChangeType = event => {
