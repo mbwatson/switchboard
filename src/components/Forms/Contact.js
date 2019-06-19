@@ -52,9 +52,10 @@ export const Option = styled.option`
 export const MessageTypeSelect = () => {
     return (
         <Select name="message-type-select" id="message-type-select">
-            <Option value="asd">asd</Option>
-            <Option value="qwe">qwe</Option>
-            <Option value="dfg">dfg</Option>
+            <Option value="0">Technical difficulty</Option>
+            <Option value="1">Usability issue</Option>
+            <Option value="2">Suggestion</Option>
+            <Option value="3">Praise</Option>
         </Select>
     )
 }

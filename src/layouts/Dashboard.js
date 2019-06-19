@@ -87,7 +87,10 @@ export const Dashboard = ({ children }) => {
 
     const handleToggleSearchBox = event => {
         setSearchBoxVisibile(!searchBoxVisibile)
-        console.log(searchBoxVisibile)
+    }
+
+    const closeSearchBox = event => {
+        setSearchBoxVisibile(false)
     }
 
     const handleSearch = () => {
@@ -149,7 +152,7 @@ export const Dashboard = ({ children }) => {
                             )
                         }
                     </Header>
-                    <SearchBox open={ searchBoxVisibile } searchHandler={ handleSearch } />
+                    <SearchBox open={ searchBoxVisibile } searchHandler={ handleSearch } closeSearchHandler={ closeSearchBox } />
                     <Main style={{ transform: menuOpen || windowWidth >= WINDOW_WIDTH_THRESHOLD ? `translateX(${ MENU_WIDTH }px)` : 'translateX(0)' }}>
                         <Navigation items={ data.site.siteMetadata.menuItems } compact={ compact } width={ MENU_WIDTH } />
                         <Content
