@@ -13,7 +13,7 @@ const Expander = styled.div`
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    padding-left: 0.5rem;
+    padding-left: 0.75rem;
 `
 
 Expander.propTypes = {
