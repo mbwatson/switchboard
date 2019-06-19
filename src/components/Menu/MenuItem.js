@@ -4,7 +4,7 @@ import { Link } from 'gatsby'
 export const MenuItem = styled(Link)`
     border: 0;
     cursor: pointer;
-    padding: 0.25rem 3rem;
+    padding: 0.5rem 3rem;
     transition: color 250ms;
     color: var(--color-black);
     transition: background-color 500ms;
