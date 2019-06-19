@@ -190,7 +190,7 @@ export const Dashboard = ({ children }) => {
                         <Main style={{ transform: 'translateX(0)' }}>
                             <Content compact={ compact }>
                                 <div style={{ height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center', }}>
-                                    <h4 style={{ color: 'var(--color-primary)', letterSpacing: '2px' }}>Please log in to view the contents of this page.</h4>
+                                    <h4 style={{ color: 'var(--color-primary)', letterSpacing: '2px' }}>Please (pretend to) log in to view the contents of this page.</h4>
                                 </div>
                             </Content>
                         </Main>
