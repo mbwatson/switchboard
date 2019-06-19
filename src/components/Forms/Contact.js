@@ -49,25 +49,36 @@ export const Option = styled.option`
     border: 1px solid var(--color-primary);
 `
 
-export const MessageTypeSelect = () => {
-    return (
-        <Select name="message-type-select" id="message-type-select">
-            <Option value="0">Technical difficulty</Option>
-            <Option value="1">Usability issue</Option>
-            <Option value="2">Suggestion</Option>
-            <Option value="3">Praise</Option>
-        </Select>
-    )
-}
-
 export const ContactForm = props => {
     const [message, setMessage] = useState('')
-    const [type, setType] = useState()
+    const [type, setType] = useState(3)
     const [messageSent, setMessageSent] = useState(false)
     
+    const messageTypes = [
+        {
+            text: 'Question',
+            placeholder: 'How do I do this weird thing?',
+        },
+        {
+            text: 'Technical difficulty',
+            placeholder: 'I\'m having so much trouble!',
+        },
+        {
+            text: 'Suggestion',
+            placeholder: 'You know what would be really cool?',
+        },
+        {
+            text: 'Praise',
+            placeholder: 'Wow, this is such a great resource!',
+        }
+    ]
+
+    const handleChangeType = event => {
+        setType(event.target.value)
+    }
+
     const handleChangeMessage = event => {
         setMessage(event.target.value)
-        console.log(message)
     }
 
     const handleSubmitMessage = event => {
@@ -77,8 +88,10 @@ export const ContactForm = props => {
 
     return !messageSent ? (
         <FormControl>
-            <MessageTypeSelect />
-            <TextareaInput placeholder="Enter message" value={ message } onChange={ handleChangeMessage } />
+            <Select name="message-type-select" id="message-type-select" onChange={ handleChangeType }>
+                { messageTypes.map(({ text }) => text).map((text, i) => <Option value={ i } selected={ i === type }>{ text }</Option>) }
+            </Select>
+            <TextareaInput placeholder={ messageTypes[type].placeholder } value={ message } onChange={ handleChangeMessage } />
             <Button onClick={ handleSubmitMessage }>Submit</Button>
         </FormControl>
     ) : (
