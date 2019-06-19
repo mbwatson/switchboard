@@ -9,7 +9,7 @@ import { Brand } from '../components/Brand'
 import { SearchBox } from '../components/SearchBox'
 import { Rotator } from '../components/Transformers'
 import { DashboardIcon, ExitIcon, ExpandRightIcon, LockIcon, SearchIcon } from '../components/Icons'
-import { useWindowWidth } from '../hooks/useWindowWidth'
+import { useWindowWidth, useScrollPosition } from '../hooks'
 import { useAuth } from '../contexts'
 import '../styles/base.scss'
 import '../styles/globals.scss'
@@ -76,11 +76,14 @@ const Navigation = ({ items, compact, width }) => (
 export const Dashboard = ({ children }) => {
     const [windowWidth, setWindowWidth] = useWindowWidth()
     const isCompact = () => windowWidth < 800
+    const scrollPosition = useScrollPosition()
     const [menuOpen, setMenuOpen] = useState(false)
     const handleToggleMenu = () => setMenuOpen(!menuOpen)
     const [searchBoxVisibile, setSearchBoxVisibile] = useState(false)
     const [compact, setCompact] = useState(isCompact())
     const { loginHandler, logoutHandler, isLoggedIn } = useAuth()
+
+    console.log(scrollPosition)
 
     const handleToggleSearchBox = event => {
         setSearchBoxVisibile(!searchBoxVisibile)
