@@ -23,6 +23,7 @@ module.exports = {
       { text: 'Project Management', path: '/pm',
         submenu: [
           { text: 'Event Planning', path: '/pm/event-planning', },
+          { text: 'Support Request', path: '/pm/support-request', },
         ],
       },
       { text: 'Miscellaneous', path: '/misc', },
