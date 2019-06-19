@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import { Helmet } from 'react-helmet'
 import { Link, StaticQuery, graphql } from 'gatsby'
 import { Layout, Header, Footer, Main, Content } from '../components/Layout'
 import { Menu, MenuItem, ExpandingSublist } from '../components/Menu'
@@ -133,6 +134,11 @@ export const Dashboard = ({ children }) => {
         render={
             data => (
                 <Layout style={{ overflow: 'hidden' }}>
+                    <Helmet>
+                        <meta charSet="utf-8" />
+                        <title>RENCI Switchboard</title>
+                        <meta name="theme-color" content="#333333" />
+                    </Helmet>
                     <Header compact={ compact }>
                         <MenuToggleButton visible={ windowWidth < WINDOW_WIDTH_THRESHOLD } onClick={ handleToggleMenu }>
                             { compact ? null : 'Menu' } <Rotator rotated={ menuOpen }><ExpandRightIcon /></Rotator>
