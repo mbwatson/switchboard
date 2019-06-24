@@ -56,17 +56,17 @@ const MenuToggleButton = styled(HeaderButton)`
     }
 `
 
-const Navigation = ({ items, compact, width }) => (
+const Navigation = ({ items, compact, width, closeHandler }) => (
     <Menu compact={ compact } width={ width }>
         {
             items.map(({ text, path, submenu }) =>
                 text && path ?
                     submenu ? (
                         <ExpandingSublist title={ text } key={ text } to={ path } activeClassName="active">
-                            { submenu.map(({ text, path }) => <MenuItem key={ path } to={ path } activeClassName="active">{ text }</MenuItem>) }
+                            { submenu.map(({ text, path }) => <MenuItem key={ path } to={ path } activeClassName="active" onClick={ closeHandler }>{ text }</MenuItem>) }
                         </ExpandingSublist>
                     ) : (
-                        <MenuItem key={ path } to={ path } activeClassName="active">{ text }</MenuItem>
+                        <MenuItem key={ path } to={ path } activeClassName="active" onClick={ closeHandler }>{ text }</MenuItem>
                     )
                 : <Divider key={ Math.random() } />
                 )
@@ -132,6 +132,7 @@ export const Dashboard = ({ children }) => {
         render={
             data => (
                 isLoggedIn() ? (
+                    // Authenticated View
                     <Layout style={{ overflow: 'hidden' }}>
                         <Helmet>
                             <meta charSet="utf-8" />
@@ -159,7 +160,7 @@ export const Dashboard = ({ children }) => {
                         </Header>
                         <SearchBox open={ searchBoxVisibile } searchHandler={ handleSearch } closeSearchHandler={ closeSearchBox } />
                         <Main style={{ transform: menuOpen || windowWidth >= WINDOW_WIDTH_THRESHOLD ? `translateX(${ MENU_WIDTH }px)` : 'translateX(0)' }}>
-                            <Navigation items={ data.site.siteMetadata.menuItems } compact={ compact } width={ MENU_WIDTH } />
+                            <Navigation items={ data.site.siteMetadata.menuItems } compact={ compact } width={ MENU_WIDTH } closeHandler={ () => setMenuOpen(false) } />
                             <Content
                                 compact={ compact }
                                 pushedAside={ menuOpen }
@@ -175,6 +176,7 @@ export const Dashboard = ({ children }) => {
                         </Footer>
                     </Layout>
                 ) : (
+                    // Unauthenticated View
                     <Layout style={{ overflow: 'hidden' }}>
                         <Helmet>
                             <meta charSet="utf-8" />
