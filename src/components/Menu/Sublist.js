@@ -36,8 +36,9 @@ Sublist.propTypes = {
     children: PropTypes.node.isRequired,
 }
 
-const SubmenuToggler = styled(Rotator)`
-    // border: 1px solid #f99;
+const SubmenuToggler = styled.button`
+    cursor: pointer;
+    border: 0;
     border-radius: 50%;
     padding: 0.5rem;
     position: absolute;
@@ -48,6 +49,7 @@ const SubmenuToggler = styled(Rotator)`
     transition: opacity 250ms, background-color 500ms;
     &:hover {
         opacity: 1.0;
+        background-color: #66666622;
     }
     &:active {
         transition: opacity 250ms, background-color 100ms;
@@ -67,8 +69,10 @@ export const ExpandingSublist = ({ title, to, activeClassName, children }) => {
         <Sublist>
             <MenuItem to={ to } activeClassName={ activeClassName } style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
                 { title }
-                <SubmenuToggler rotated={ open } onClick={ handleExpand }>
-                    <ExpandDownIcon />
+                <SubmenuToggler onClick={ handleExpand }>
+                    <Rotator rotated={ open }>
+                        <ExpandDownIcon />
+                    </Rotator>
                 </SubmenuToggler>
             </MenuItem>
             <Expander expanded={ open }>
