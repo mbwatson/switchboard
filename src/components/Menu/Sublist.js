@@ -37,10 +37,21 @@ Sublist.propTypes = {
 }
 
 const SubmenuToggler = styled(Rotator)`
+    // border: 1px solid #f99;
+    border-radius: 50%;
+    padding: 0.5rem;
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
     opacity: 0.75;
-    transition: opacity 250ms;
+    transition: opacity 250ms, background-color 500ms;
     &:hover {
         opacity: 1.0;
+    }
+    &:active {
+        transition: opacity 250ms, background-color 100ms;
+        background-color: #00000022;
     }
 `
 
